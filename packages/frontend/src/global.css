@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Bridged tokens — kept in `@theme static` so the CSS vars are always
+   emitted, not tree-shaken when no Tailwind utility consumes them.
+   Required because <VegaVisual> and <DataGrid> read these at runtime via
+   `useCssTheme()` and project them into a JS theme object (Vega's SVG output
+   cannot resolve `var()` references). */
+@theme static {
+  --color-brand: #94702f; /* bar/area fills, button-like brand surfaces */
+  --color-brand-foreground: #94702f; /* line/point marks, branded text & emphasis */
+  --color-hover: #efe6d9; /* row/cell hover surface in DataGrid + visuals */
+  --color-halo: #f6e7d2; /* page glow behind the carousel */
+  --color-chart-alert: #b4473a; /* chart series that breach a limit */
+  --color-chart-cool: #4f7ea8; /* winter series in seasonal charts */
+}
+
+@theme {
+  /* Color tokens — light theme
+     Usage: bg-*, text-*, border-* (e.g. bg-primary text-primary-foreground)
+     Each token has a -foreground pair for text on that surface. */
+  --color-background: #f5efe6; /* page background */
+  --color-foreground: #1c1519; /* default text */
+
+  --color-card: #fffcf7; /* card surfaces */
+  --color-card-foreground: #1c1519;
+
+  --color-popover: #fffcf7; /* popover/dropdown surfaces */
+  --color-popover-foreground: #1c1519;
+
+  --color-primary: #94702f; /* primary actions & buttons */
+  --color-primary-foreground: #fffaf0;
+
+  --color-secondary: #ece3d6; /* secondary actions */
+  --color-secondary-foreground: #1c1519;
+
+  --color-muted: #ebe2d4; /* subtle backgrounds */
+  --color-muted-foreground: #6e6259; /* subdued text */
+
+  --color-accent: #efe6d9; /* accent highlights */
+  --color-accent-foreground: #1c1519;
+
+  --color-destructive: #c50f1f; /* errors & destructive actions */
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #ddd0bd; /* default border */
+  --color-input: #ddd0bd; /* input field borders */
+  --color-ring: #94702f; /* focus rings */
+
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+  --radius-4xl: 24px;
+  --radius-5xl: 32px;
+  --radius-6xl: 40px;
+  --radius-full: 9999px;
+  --radius: 4px;
+
+  /* Spacing — 4px grid; use only these tokens, no interpolation. *-nudge = base − 2px.
+     Usage: p-*, m-*, gap-* (e.g. p-400 gap-300) */
+  --spacing-none: 0;
+  --spacing-100-nudge: 2px;
+  --spacing-100: 4px;
+  --spacing-200-nudge: 6px;
+  --spacing-200: 8px;
+  --spacing-300-nudge: 10px;
+  --spacing-300: 12px;
+  --spacing-400: 16px;
+  --spacing-500: 20px;
+  --spacing-600: 24px;
+  --spacing-700: 28px;
+  --spacing-800: 32px;
+
+  /* Font Sizes — 100-based scale 
+     Usage: text-* (e.g. text-300, text-hero-900) */
+  --text-100: 10px;
+  --text-200: 12px;
+  --text-300: 14px;
+  --text-400: 16px;
+  --text-500: 20px;
+  --text-600: 24px;
+  --text-hero-700: 28px;
+  --text-hero-800: 32px;
+  --text-hero-900: 40px;
+  --text-hero-1000: 68px;
+
+  /* Line Heights — paired with font sizes
+     Usage: leading-* (e.g. leading-300) */
+  --leading-100: 14px;
+  --leading-200: 16px;
+  --leading-300: 20px;
+  --leading-400: 22px;
+  --leading-500: 28px;
+  --leading-600: 32px;
+  --leading-hero-700: 36px;
+  --leading-hero-800: 40px;
+  --leading-hero-900: 52px;
+  --leading-hero-1000: 92px;
+
+  /* Font Weights
+     Usage: font-* (e.g. font-semibold) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Families
+     Usage: font-* (e.g. font-heading, font-base) */
+  --font-heading:
+    'Bodoni Moda', Didot, 'Bodoni 72', Georgia, serif; /* headings, titles, display text */
+  --font-base:
+    'Jost', 'Avenir Next', 'Century Gothic', sans-serif; /* body text, labels, UI controls */
+  --font-monospace:
+    Consolas, 'Courier New', Courier, monospace; /* code, pre-formatted text */
+  --font-numeric:
+    'Jost', 'Avenir Next', sans-serif; /* KPI values, numeric displays */
+
+  /* Icon Sizes — 100-based scale
+     Usage: icon-size-* custom utility (e.g. icon-size-200) */
+  --icon-size-100: 12px;
+  --icon-size-200: 16px;
+  --icon-size-300: 20px;
+  --icon-size-400: 24px;
+  --icon-size-500: 28px;
+  --icon-size-600: 32px;
+  --icon-size-700: 48px;
+}
+
+@utility icon-size-* {
+  width: --value(--icon-size-*);
+  height: --value(--icon-size-*);
+}
+
+@layer base {
+  .dark {
+    /* Color tokens — dark theme */
+    --color-background: #0a090c;
+    --color-foreground: #f4ede3;
+
+    --color-card: #131116;
+    --color-card-foreground: #f4ede3;
+
+    --color-popover: #131116;
+    --color-popover-foreground: #f4ede3;
+
+    --color-primary: #d4b26a;
+    --color-primary-foreground: #17120a;
+
+    --color-secondary: #1b181e;
+    --color-secondary-foreground: #f4ede3;
+
+    --color-muted: #18151b;
+    --color-muted-foreground: #a89d91;
+
+    --color-accent: #221e25;
+    --color-accent-foreground: #f4ede3;
+
+    --color-destructive: #c50f1f;
+    --color-destructive-foreground: #ffffff;
+
+    --color-border: #2b2630;
+    --color-input: #2b2630;
+    --color-ring: #d4b26a;
+
+    --color-brand: #d4b26a;
+    --color-brand-foreground: #e2c587;
+    --color-hover: #221e25;
+    --color-halo: #2a1620;
+    --color-chart-alert: #e07a66;
+    --color-chart-cool: #8db6dc;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background font-base text-foreground antialiased;
+  }
+
+  select,
+  input,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
