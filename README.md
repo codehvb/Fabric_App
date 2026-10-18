@@ -4,7 +4,7 @@
 
 A luxury smoothie brand's menu as a rotating 3D gallery. Every blend opens into a full KPI view with trend charts and nutrition. A second "Strategy room" turns researched problems facing Innocent Drinks into four interactive what-if tools, all fed by a database that lives in Fabric.
 
-> 🎥 **Demo video:** [Watch the walkthrough](VIDEO_URL)
+> 🎥 **Demo video:** [Watch the walkthrough](https://drive.google.com/file/d/1UCEwISFdPFn9gnD9rQgT_depnFH9-Sfv/view?usp=drive_link)
 
 ![The 3D collection](docs/screenshots/01-collection.png)
 
